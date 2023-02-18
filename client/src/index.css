@@ -30,20 +30,45 @@ body {
 
 }
 
-.edit {
-  border: 1.5px solid rgb(140, 180, 150);
-  color: rgb(140, 180, 150);
+.edit, .create {
+  border: 1.5px solid rgb(92, 184, 92);
+  color: rgb(92, 184, 92);
   text-transform: uppercase;
 }
-.edit:hover {
-background-color: rgb(180, 250, 190);
+.edit:hover, .create:hover {
+  background-color: rgb(92, 184, 92);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
 }
 
-.edit:active {
-  border: 1.5px solid rgb(140, 180, 150);
-  color: rgb(255, 255, 255);
-  background-color: rgb(140, 180, 150);
+.edit:active, .create:active {
+  color: rgb(92, 184, 92);
+  background-color: rgb(255, 255, 255);
 }
+
+.delete, .signout {
+  border: 1.5px solid rgb(217, 83, 79);
+  color: rgb(217, 83, 79);
+  text-transform: uppercase;
+}
+.delete:hover, .signout:hover {
+  background-color: rgb(217, 83, 79);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+}
+.delete:active, .signout:active{
+  color: rgb(217  , 83, 79);
+  background-color: rgb(255, 255, 255);
+}
+
+input {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1.5px solid rgb(230, 230, 230);
+}
+
+
 /* List Header */
 
 .list-header {
@@ -51,6 +76,14 @@ background-color: rgb(180, 250, 190);
   display: flex;
   justify-content: space-between;
   border-bottom: rgba(0, 0, 0, 0.05) 1px solid;
+}
+
+.user-email {
+  display: flex;
+  justify-content: end;
+  font-size: 13px;
+  margin: 10px;
+  color: rgb(114, 114, 114);
 }
 
 /* List Item */
@@ -71,4 +104,105 @@ background-color: rgb(180, 250, 190);
   stroke-miterlimit: 10;
   stroke-width: 32px;
   padding: 10px;
+}
+
+/* Modal */
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  width: 500px;
+  background-color: rgb(255, 255, 255);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px 0, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+
+.modal .form-title-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal .form-title-container button {
+  border: none;
+  background-color: transparent;
+}
+
+.modal .form-title-container button:hover {
+  cursor: pointer;
+}
+
+.modal .form-title-container button:active {
+  color: rgb(217, 83, 79);
+}
+
+.modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal label {
+  font-size: 13px;
+}
+
+.outer-bar {
+  width: 200px;
+  height: 14px;
+  background-color:  rgb(216,216,216);
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.inner-bar {
+  height: 14px;
+  background-color: rgb(92, 184, 92);
+}
+
+.task-title {
+  width: 250px;
+}
+
+/* Auth */
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  margin: 5px;
+}
+
+.auth-container-box {
+  width: 500px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 6px 24px, rgba(0, 0, 0, 0.08) 0 0 0 1px;
+}
+
+.auth-container-box form {
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  padding: 20px;
+}
+
+.auth-options {
+  display: flex;
+}
+
+.auth-options button {
+  width: 50%;
+  border: none;
+  padding: 10px;
+  color: rgb(35, 35, 50);
+}
+.auth-options button:hover {
+  cursor: pointer;
 }

@@ -2,19 +2,25 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ListHeader from "./components/ListHeader";
 import ListItem from "./components/ListItem";
+import Auth from "./components/Auth";
+import { useCookies } from "react-cookie";
 
 const App = () => {
-  const userEmail = "haodecoy1@gmail.com";
+  const [cookies, setCookie, removeCookie] = useCookies(null);
+  const authToken = cookies.AuthToken;
+  const userEmail = cookies.Email;
   const [tasks, setTasks] = useState(null);
 
+  const getData = async () => {
+    const response = await axios.get(
+      `http://localhost:5000/todos/${userEmail}`
+    );
+    setTasks(response.data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `http://localhost:5000/todos/${userEmail}`
-      );
-      setTasks(response.data);
-    };
-    fetchData();
+    // console.log(authToken);
+    if (authToken) getData();
   }, []);
 
   console.log(tasks);
@@ -26,10 +32,16 @@ const App = () => {
 
   return (
     <div className="app">
-      <ListHeader listName={"Holiday tick list"} />
-      {sortedTasks?.map((task) => (
-        <ListItem key={task.id} task={task} />
-      ))}
+      {!authToken && <Auth />}
+      {authToken && (
+        <>
+          <ListHeader listName={"🏝️Todo List"} getData={getData} />
+          <p className="user-email">Welcome back {userEmail}</p>
+          {sortedTasks?.map((task) => (
+            <ListItem key={task.id} task={task} getData={getData} />
+          ))}
+        </>
+      )}
     </div>
   );
 };
